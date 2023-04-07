@@ -1,21 +1,13 @@
 #!/usr/bin/python3
-"""Sends a POST request to a given URL with a given email.
-
-Usage:
-    ./6-post_email.py <url> <email>
 """
-import sys
+Python script that takes in a URL and an email address,
+sends a POST request to the passed URL with the email as a parameter
+"""
 import requests
+import sys
 
+if __name__ == '__main__':
 
-if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: ./6-post_email.py <url> <email>")
-    else:
-        URL = sys.argv[1]
-
-        value = {
-                    "email": sys.argv[2]
-                }
-        r = requests.post(URL, data=value)
-        print(r.text)
+    new_value = {'email': sys.argv[2]}
+    req = requests.post(sys.argv[1], new_value)
+    print(req.text)
