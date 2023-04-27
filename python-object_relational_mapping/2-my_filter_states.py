@@ -1,27 +1,38 @@
 #!/usr/bin/python3
 """
-Script that takes in an argument and displays all values in the states
-table of hbtn_0e_0_usa where name matches the argument
+script that takes in an argument \
+and displays all values in the states table of hbtn_0e_0_usa \
+where name matches the argument.
+
+Usage: ./2-my_filter_states.py <mysql username> \
+<mysql password <database name> <argument>
 """
 import MySQLdb
-from sys import argv
+import sys
 
-# The code should not be executed when imported
-if __name__ == '__main__':
 
-    # make a connection to the database
-    db = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
-                         passwd=argv[2], db=argv[3])
+# Test the no. of commandline arguements passed
+if len(sys.argv) == 5:
+    # Connect to MySQL
+    conn = MySQLdb.connect(
+        host="localhost",
+        port=3306,
+        user=sys.argv[1],
+        passwd=sys.argv[2],
+        db=sys.argv[3],
+        charset="utf8"
+    )
 
-    # It gives us the ability to have multiple seperate working environments
-    # through the same connection to the database.
-    cur = db.cursor()
-    nmeSr = "SELECT * FROM states WHERE name LIKE BINARY '{}'".format(argv[4])
-    cur.execute(nmeSr)
-
-    rows = cur.fetchall()
-    for i in rows:
-        print(i)
-    # Clean up process
+    cur = conn.cursor()
+    # Grab all values in the states table.
+    cur.execute("SELECT * FROM states WHERE name='{}' ORDER BY id"
+                .format(sys.argv[4]))
+    query_rows = cur.fetchall()
+    for row in query_rows:
+        print(row)
     cur.close()
-    db.close()
+    conn.close()
+
+else:
+    print("Usage: ./2-my_filter_states.py \
+<mysql username> <mysql password <database name>")

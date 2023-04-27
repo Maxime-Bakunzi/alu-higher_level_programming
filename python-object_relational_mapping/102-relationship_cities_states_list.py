@@ -1,28 +1,30 @@
 #!/usr/bin/python3
-from relationship_state import Base, State
-from relationship_city import City
-from sqlalchemy.orm import sessionmaker, relationship
-from sqlalchemy import create_engine
-import sys
 """
-    Module that performs MySQL query through MySQLAlchemy.
-"""
+Lists all City objects from the database hbtn_0e_101_usa.i
 
+Usage:
+    ./102-relationship_cities_states_list.py <mysql username> \
+<mysql password> <database name>
+"""
+import sys
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from relationship_state import State
+from relationship_city import City
 
 if __name__ == "__main__":
-    db_uri = 'mysql+mysqldb://{}:{}@localhost/{}'.format(
-                                                            sys.argv[1],
-                                                            sys.argv[2],
-                                                            sys.argv[3])
+    if len(sys.argv) != 4:
+        print("./102-relationship_cities_states_list.py <mysql username> \
+<mysql password> <database name>")
+    else:
+        MySQL_USERNAME = sys.argv[1]
+        MySQL_PASSWD = sys.argv[2]
+        DB_NAME = sys.argv[3]
 
-    engine = create_engine(db_uri, pool_pre_ping=True)
-    Base.metadata.create_all(engine)
+        engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}\
+".format(MySQL_USERNAME, MySQL_PASSWD, DB_NAME), pool_pre_ping=True)
+        Session = sessionmaker(bind=engine)
+        session = Session()
 
-    Session = sessionmaker(bind=engine)
-    session = Session()
-
-    for a_city in session.query(City).order_by(City.id):
-            print("{}: {} -> {}".format(a_city.id, a_city.name,
-                  a_city.state.name))
-
-    session.close()
+        for city in session.query(City).order_by(City.id):
+            print("{}: {} -> {}".format(city.id, city.name, city.state.name))
