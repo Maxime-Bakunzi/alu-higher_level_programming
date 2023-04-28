@@ -1,18 +1,24 @@
 #!/usr/bin/python3
-""" prints the State object with the name passed as argument from the database
-"""
-import sys
+"""Lists all State objects from the database hbtn_0e_6_usa"""
+
+from sys import argv
 from model_state import Base, State
-from sqlalchemy import (create_engine)
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 
 if __name__ == "__main__":
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
-                           .format(sys.argv[1], sys.argv[2], sys.argv[3]))
+    connection = "mysql+mysqldb://{}:{}@localhost/{}"
+    engine = create_engine(connection.format(*argv[1:]),
+                           pool_pre_ping=True)
+
     Base.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    for instance in session.query(State).filter(State.name.like('%a%')):
-        session.delete(instance)
+    session_m = sessionmaker(bind=engine)
+    session = session_m()
+
+    states = session.query(State).filter(State.name.contains("a")).all()
+    for state in states:
+        session.delete(state)
+
     session.commit()
+    session.close()
