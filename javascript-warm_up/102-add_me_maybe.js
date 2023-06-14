@@ -5,4 +5,3 @@ const addMeMaybe = (number, theFunction) => {
 };
 
 module.exports = { addMeMaybe };
-

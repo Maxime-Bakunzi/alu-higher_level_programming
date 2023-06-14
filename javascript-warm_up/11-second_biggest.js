@@ -7,4 +7,3 @@ if (sortedArgs.length <= 1) {
 } else {
   console.log(sortedArgs[1]);
 }
-

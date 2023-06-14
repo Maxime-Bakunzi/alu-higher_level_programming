@@ -1,5 +1,5 @@
 #!/usr/bin/node
-function factorial(n) {
+function factorial (n) {
   if (isNaN(n)) {
     return 1;
   } else if (n === 0) {
@@ -13,4 +13,3 @@ const num = parseInt(process.argv[2], 10);
 const result = factorial(num);
 
 console.log(result);
-
