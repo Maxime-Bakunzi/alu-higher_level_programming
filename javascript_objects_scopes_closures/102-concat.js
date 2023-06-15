@@ -13,4 +13,3 @@ const concatenatedContent = content1 + content2;
 fs.writeFileSync(destinationFile, concatenatedContent);
 
 console.log(`Files '${sourceFile1}' and '${sourceFile2}' successfully concatenated to '${destinationFile}'.`);
-

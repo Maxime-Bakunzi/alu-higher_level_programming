@@ -13,4 +13,3 @@ for (const userId in data) {
 }
 
 console.log(sortedDict);
-
