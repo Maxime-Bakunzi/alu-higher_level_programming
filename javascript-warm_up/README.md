@@ -23,7 +23,12 @@ This repository contains a set of JavaScript code examples and their correspondi
 * **102-add_me_maybe.js:** Incrementing a number and calling a callback function.
 * **103-object_fct.js:** Adding a new object function to increment an integer value.
 
-> Please refer to the individual code examples for detailed explanations and code snippets that provide solutions to each problem or demonstrate specific concepts.
+## Author
+
+This repository is maintained by [Maxime Guy Bakunzi](https://github.com/Maxime-Bakunzi).
+
+Please feel free to reach out if you have any questions or suggestions.
+
 
 
 
