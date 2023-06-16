@@ -21,10 +21,10 @@ This repository contains a set of JavaScript code examples and their correspondi
 * **100-let_me_const.js:** Modifying the value of a variable defined outside the current scope.
 * **101-call_me_moby.js:** Executing a function multiple times.
 * **102-add_me_maybe.js:** Incrementing a number and calling a callback function.
-* **103-object_fct.js:** Adding a new function to an object for incrementing an integer value.
+* **103-object_fct.js:** Adding a new object function to increment an integer value.
 
 > Please refer to the individual code examples for detailed explanations and code snippets that provide solutions to each problem or demonstrate specific concepts.
 
-> Feel free to explore the code examples, experiment with them, and use them as a reference to enhance your understanding of JavaScript concepts.
+
 
 
